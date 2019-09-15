@@ -18,41 +18,10 @@ const db = knex({
     }
   });
 
-//db.select('*').from('users').then(data => {
-//    console.log(data);
-//});
 
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
-
-/*const database = {
-    users:[
-        {
-            id: '123',
-            name: 'Jassi',
-            email: 'Jassi@gmail.com',
-            entries: 0,
-            password: 'cookies',
-            joined: new Date()
-        },
-        {
-            id: '124',
-            name: 'Sally',
-            email: 'Sally@gmail.com',
-            password: 'bananas',
-            entries: 0,
-            joined: new Date()
-        }
-    ],
-    login: [
-        {
-            id: '987',
-            hash: '',
-            email: 'john@gmail.com'
-        }
-    ]
-}*/
 
 app.get('/', (req,res) => {
     res.send('it is working!')
