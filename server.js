@@ -11,18 +11,51 @@ const image= require('./controllers/image');
 const db = knex({
     client: 'pg',
     connection: {
-      connectionString: process.env.DATABASE_URL,
-      ssl: true,
+      host : '127.0.0.1',
+      user : 'postgres',
+      password : 'Harshking',
+      database : 'smartbrain'
     }
   });
 
+//db.select('*').from('users').then(data => {
+//    console.log(data);
+//});
 
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
+/*const database = {
+    users:[
+        {
+            id: '123',
+            name: 'Jassi',
+            email: 'Jassi@gmail.com',
+            entries: 0,
+            password: 'cookies',
+            joined: new Date()
+        },
+        {
+            id: '124',
+            name: 'Sally',
+            email: 'Sally@gmail.com',
+            password: 'bananas',
+            entries: 0,
+            joined: new Date()
+        }
+    ],
+    login: [
+        {
+            id: '987',
+            hash: '',
+            email: 'john@gmail.com'
+        }
+    ]
+}*/
+
 app.get('/', (req,res) => {
-    res.send('it is working!')
+    res.send(database.users);
 })
 
 app.post('/signin', (req, res) => { signin.handleSignin(req, res, db, bcrypt) })
@@ -35,6 +68,6 @@ app.put('/image', (req, res) => { image.handleImage(req, res, db) })
 
 app.post('/imageurl', (req, res) => { image.handleApiCall(req, res) })
 
-app.listen(process.env.PORT || 3000, function(){
-  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+app.listen(3000, () => {
+    console.log('3000 is running');
 });
